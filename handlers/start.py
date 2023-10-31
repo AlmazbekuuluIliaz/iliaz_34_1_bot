@@ -1,8 +1,7 @@
 import sqlite3
-
 from aiogram import types, Dispatcher
 from config import bot
-# from database.sql_commands import Database
+from database.sql_commands import Database
 from keyboards.inline_buttons import start_keyboard
 
 
