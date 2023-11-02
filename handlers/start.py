@@ -22,7 +22,7 @@ async def start_button(message: types.Message):
             reply_markup=await start_keyboard()
         )
 async def secret_word(message: types.Message):
-    if message.from_user.id == 1150258083:
+    if message.from_user.id == 1428965477:
         await bot.send_message(
             chat_id=message.from_user.id,
             text="Long time no see, Admin!🐍",

@@ -9,7 +9,7 @@ async def chat_action(message: types.Message):
     ban_words = ['fuck', 'bitch', 'damn']
 
     print(message.chat.id)
-    if message.chat.id == -1001535759001:
+    if message.chat.id == -1001976699441:
         for word in ban_words:
             if word in message.text.lower().replace(" ", ""):
                 user = Database().sql_select_user_query(

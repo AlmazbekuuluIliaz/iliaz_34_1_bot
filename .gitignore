@@ -5,3 +5,5 @@ venv
 pycache/
 db.sqlite3
 .env
+media
+test.py
