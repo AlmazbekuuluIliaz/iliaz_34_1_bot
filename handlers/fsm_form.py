@@ -50,7 +50,8 @@ async def load_nickname(message: types.Message,
 
     await bot.send_message(
         chat_id=message.from_user.id,
-        text="Cool 😎, Send me ur bio, please."
+        text="Cool 😎, Send me ur bio, please.\n"
+             "(If dont want to, just jet down - )"
     )
     await FormStates.next()
 
