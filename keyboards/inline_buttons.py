@@ -24,15 +24,20 @@ async def start_keyboard():
         "Referral Menu 💵",
         callback_data="reference_menu"
     )
-    latest_news_button = InlineKeyboardButton(
-        "3 Latest News",
-        callback_data="latest_news"
+    # latest_news_button = InlineKeyboardButton(
+    #     "3 Latest News",
+    #     callback_data="latest_news"
+    # )
+    balance_button = InlineKeyboardButton(
+        "Баланс 💰",
+        callback_data="check_balance"
     )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(random_profile_button)
     markup.add(reference_menu_button)
+    markup.add(balance_button)
     markup.add(latest_news_button)
     return markup
 
@@ -113,4 +118,12 @@ async def reference_menu_keyboard():
     )
     markup.add(reference_link_button)
     markup.add(reference_list_button)
+    return markup
+async def balance_button():
+    markup = InlineKeyboardMarkup()
+    balance_button = InlineKeyboardButton(
+        "Balance 💰",
+        callback_data="check_balance"
+    )
+    markup.add(balance_button)
     return markup

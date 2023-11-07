@@ -16,11 +16,19 @@ class Database:
         self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERENCE_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_WALLET_TABLE_QUERY)
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
         except sqlite3.OperationalError:
             pass
         self.connection.commit()
+
+    def sql_add_referral_points(self, telegram_id, points):
+        try:
+            self.cursor.execute(sql_queries.ADD_REFERRAL_POINTS_QUERY, (telegram_id, points))
+            self.connection.commit()
+        except sqlite3.Error as e:
+            print(f"Error adding referral points: {e}")
 
     def sql_insert_user_query(self, telegram_id, username, first_name, last_name):
         self.cursor.execute(
@@ -76,6 +84,24 @@ class Database:
             (None, telegram_id, nickname, bio, age, occupation, photo)
         )
         self.connection.commit()
+
+    def sql_select_balance(self, telegram_id):
+        try:
+            self.cursor.execute(sql_queries.SELECT_BALANCE_QUERY, (telegram_id,))
+            balance = self.cursor.fetchone()
+            if balance:
+                return balance[0]
+            else:
+                return 0
+        except sqlite3.Error as e:
+            print(f"Error selecting balance: {e}")
+
+    def sql_update_balance(self, telegram_id, balance):
+        try:
+            self.cursor.execute(sql_queries.UPDATE_BALANCE_QUERY, (balance, telegram_id))
+            self.connection.commit()
+        except sqlite3.Error as e:
+            print(f"Error updating balance: {e}")
 
     def sql_select_user_form_query(self, telegram_id):
         self.cursor.row_factory = lambda cursor, row: {
